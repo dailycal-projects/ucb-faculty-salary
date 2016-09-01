@@ -1,0 +1,100 @@
+{% extends 'browser/base.html' %}
+{% load humanize %}
+
+{% block breadcrumbs-container %}{% endblock %}
+
+{% block content %}
+	<section class="row">
+		<div class="col-md-8 col-md-offset-2 text">
+			<h1>Faculty Pay</h1>
+			<p class="byline">By <a href="http://www.dailycal.org/author/schinoy/">SAHIL CHINOY</a> &middot; September 1, 2016</p>
+			<br>
+			<p class="lead center">The Daily Californian processed the last decade of payroll information for UC Berkeley faculty, painting the most complete picture to date of compensation by campus department.</p>
+			<p class="center"><a href="#story">Read our analysis</a>, <a href="#database">look up a professor</a> or <a href="#about">find out more about this project</a>.</p>
+		</div>
+	</section>
+	<hr>
+	<section id="story" class="row">
+		<div class="col-md-8 col-md-offset-2">
+		<p>Last year, over 15 professors in the Economics department at UC Berkeley earned more than $300,000. Not a single professor in the Ethnic Studies department made more than $200,000; the highest paid professor in the Rhetoric department earned only $135,000.</p>
+
+		<p>Departmental disparities in faculty compensation are no secret — they reflect a market that compensates professors of business, economics, law, public policy and engineering far more than professors of the humanities and social sciences. Still, the differences at UC Berkeley are striking.</p>
+
+		<p>Take, for example, Sanjam Garg, an assistant professor of computer science who earned about $210,000 in his second year at UC Berkeley. He earned more than Shari Huhndorf, the chair of the Ethnic Studies department, a full professor who earned about $180,000 last year.</p>
+
+		<p>The university has established a different salary scale for business, economics and engineering professors. An entry-level professor can expect to be paid at least $83,000, unless they teach business, economics or engineering, in which case the salary guideline is $101,900. The same professor who teaches law can expect at least $139,900.</p>
+
+		<p>Moreover, salaries of UC Berkeley faculty are often above the salary scales published by the university. Shachar Kariv, the chair of the Economics department, earned $507,000 last year, making him the highest-paid professor at UC Berkeley. Sixteen other professors were paid more than $400,000. All but two were in the economics, business, or law departments.</p>
+
+		<p>However, salaries at UC Berkeley still lag those at private institutions by a significant margin. In 2014, the average salary for a professor at UC Berkeley was about $170,000, while the average at Stanford University was about $220,000, according to the Chronicle of Higher Education.</p>
+
+		<p>“The UC salary scales are not salary guidelines, rather they indicate the minimum salary that can be paid based on a professor’s rank and, loosely, amount of experience,” said Ben Hermalin, the campus vice provost for the faculty, in an email. “It has been long recognized by the Office of the President and others that the salary scales are seriously below market.”</p>
+	</section>
+	<hr>
+	<section id="database" class="row">
+		<div class="col-md-12">
+			<div style="text-align: center">
+				<h2>Look up a professor</h2>
+				<p>Or, <a href="{% url 'department_list' %}">compare departments</a>.</p>
+			</div>
+			<div id="loading-text" style="text-align: center;"">
+				<p class="lead">Loading...</p>
+			</div>
+			<div id="table-wrapper" class="hidden">
+				<table id="person-list" class="table table-striped">
+				<thead>
+				<tr>
+					<th>Name</th>
+					<th>Title</th>
+					<th>Department</th>
+					<th class="right">Salary</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for record in object_list|slice:"50" %}
+				<tr>
+					<td><a href="{% url 'person_detail' record.person.slug %}">{{ record.person.last|title }}, {{ record.person.first|title }}</a></td>
+					<td>{{ record.person.latest_record.title_category|title }}</td>
+					<td>{% if record.person.directory_record.department_obj.canonical %}<a href="{% url 'department_detail' record.person.directory_record.department_obj.slug %}">{{ record.person.directory_record.department_obj.canonical }}</a>{% endif %}</td>
+					<td class="right">${{ record.gross|intcomma }}</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+	<hr>
+	<section id="about" class="row">
+		<div class="col-md-8 col-md-offset-2 text">
+			<h2>About the data</h2>
+			<p>The university publishes employee pay data on <a href="https://ucannualwage.ucop.edu/wage/">its website</a> annually. But it doesn't have information on professors' and lecturers' departmental affiliations, and it's not easy to trace a person's salary over multiple years.</p>
+			<p>We merged data from 2010 to 2015 from the university with 2005 to 2009 pay data from the UC Berkeley library. Then, we added information about departmental affiliations, where available. The result is the most complete public, downloadable database of pay information for UC Berkeley faculty.</p> 
+			<p>However, we couldn't associate all faculty with a department, and we've chosen to exclude those people from this website. Moreover, professor salaries can vary year-to-year based on the portion of time they spend on campus. Making departmental comparisons is especially difficult because some departments may have more experienced professors who would consequently be paid more. Departmental averages thus are not apples-to-apples comparisons.</p>
+			<p>Another technical note: in all cases, we're examining the faculty member's gross salary -- the total amount they were paid by the university.</p>
+
+			<h2>About this project</h2>
+			<p>We're open-sourcing the raw data and code used to create this database for other journalists and researchers. Our pipeline can be used to analyze data from other campuses or for other positions within the university — for example, administrators or athletic personnel.</p>
+			<p>You can read more details and contribute to the project <a href="">on GitHub.</a></p>
+		</div>
+	</section>
+{% endblock %}
+
+{% block extra-js %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#person-list').DataTable( {
+    	scrollY: 400,
+    	scroller: true,
+    	info: false,
+    	dom: "<'row'<'col-sm-12'f>>" +
+		"<'row'<'col-sm-12'tr>>" +
+		"<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    	initComplete: function(settings, json) {
+    		$('#loading-text').addClass('hidden');
+    		$('#table-wrapper').removeClass('hidden');
+  		}
+    });
+} );
+</script>
+{% endblock %}

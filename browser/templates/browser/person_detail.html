@@ -1,0 +1,44 @@
+{% extends 'browser/base.html' %}
+{% load humanize %}
+
+{% block title %}{{ object.first|title }} {{ object.last|title }} - {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{% url 'home' %}#database">Database</a></li>
+<li class="active">{{ object.first|title }} {{ object.last|title }}</li>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+	<div class="col-md-12">
+		<section>
+			<h1>{{ object.first|title }} {{ object.last|title }} {% if object.directory_record %}<a href="http://www.berkeley.edu/directory/results?u={{ object.directory_record.uid }}"></a>{% endif %}</h1>
+
+			<p>{{ object.latest_record.title_category|title }}{% if object.directory_record.department_obj %} of <a href="{% url 'department_detail' object.directory_record.department_obj.slug %}">{{ object.directory_record.department_obj.canonical }}</a>{% endif %}</p>
+		</section>
+
+		<section>
+			<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>Year</th>
+				<th>Title category</th>
+				<th>Title code</th>
+				<th class="right">Salary</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for record in object.salaryrecord_set.all %}
+			<tr>
+				<td>{{ record.year }}</td>
+				<td>{{ record.title_category|title }}</td>
+				<td><span class="small">{{ record.title }}</span></td>
+				<td class="right">${{ record.gross|intcomma }}</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+			</table>
+		</section>
+	</div>
+	</div>
+{% endblock %}

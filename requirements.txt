@@ -1,0 +1,8 @@
+beautifulsoup4==4.5.1
+boto==2.42.0
+Django==1.10
+django-bakery==0.8.9
+django-postgres-copy==0.0.8
+psycopg2==2.6.2
+requests==2.11.0
+six==1.10.0

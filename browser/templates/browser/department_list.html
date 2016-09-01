@@ -1,0 +1,61 @@
+{% extends 'browser/base.html' %}
+{% load humanize %}
+
+{% block title %} Departments - {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{% url 'home' %}#database">Database</a></li>
+<li class="active">Departments</li>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+	<div class="col-md-12">
+		<section>
+		<h2>Average salary by department, 2015</h2>
+		<br>
+		<table id="department-list" class="table table-striped">
+		<thead>
+		<tr>
+			<th>Department</th>
+			<th width=16% class="right">All</th>
+			<th width=16% class="right">Professor</th>
+			<th width=16% class="right">Associate professor</th>
+			<th width=16% class="right">Assistant professor</th>
+			<th width=16% class="right">Lecturer</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for d in object_list %}
+		{% if d.canonical and d.avg_salary_2015 > 0 %}
+		<tr>
+			<td><a href="{% url 'department_detail' d.slug %}">{{ d.canonical }}</a></td>
+			<td class="right">${{ d.avg_salary_2015|floatformat:"0"|intcomma }}</td>
+			<td class="right">{% if d.avg_salary_professor %}${{ d.avg_salary_professor|floatformat:"0"|intcomma }}{% else %} - {% endif %}</td>
+			<td class="right">{% if d.avg_salary_associate_professor %}${{ d.avg_salary_associate_professor|floatformat:"0"|intcomma }}{% else %} - {% endif %}</td>
+			<td class="right">{% if d.avg_salary_assistant_professor %}${{ d.avg_salary_assistant_professor|floatformat:"0"|intcomma }}{% else %} - {% endif %}</td>
+			<td class="right">{% if d.avg_salary_lecturer %}${{ d.avg_salary_lecturer|floatformat:"0"|intcomma }}{% else %} - {% endif %}</td>
+		</tr>
+		{% endif %}
+		{% endfor %}
+		</tbody>
+		</table>
+		</section>
+	</div>
+	</div>
+{% endblock %}
+
+{% block extra-js %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#department-list').DataTable( {
+    	paging: false,
+    	info: false,
+    	order: [[1, 'desc']],
+    	dom: "<'row'<'col-sm-12'f>>" +
+		"<'row'<'col-sm-12'tr>>" +
+		"<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    });
+} );
+</script>
+{% endblock %}

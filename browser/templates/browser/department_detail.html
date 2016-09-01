@@ -1,0 +1,84 @@
+{% extends 'browser/base.html' %}
+{% load humanize %}
+
+{% block title %} {{ object.canonical|title }} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{% url 'home' %}#database">Database</a></li>
+<li><a href="{% url 'department_list' %}">Departments</a></li>
+<li class="active">{{ object.canonical }}</li>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+	<div class="col-md-12">
+		<h1>{{ object.canonical|title }}</h1>
+
+		<section>
+		<h2>Average salary by title, 2015</h2>
+			<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>Category</th>
+				<th width="40%" class="right">Avg. salary in {{ object.canonical }}</th>
+				<th width="40%" class="right">Avg. salary at UC Berkeley</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for category in by_title_category %}
+			<tr>
+				<td>{{ category.title_category|title }}</td>
+				<td class="right">${{ category.gross__avg|floatformat:"2"|intcomma }}</td>
+				<td class="right">${{ category.all__avg|floatformat:"2"|intcomma }}</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+			</table>
+		</section>
+
+		<section>
+			<h2>All {{ object.canonical|title }} faculty</h2>
+			<br>
+			<table id="person-list" class="table table-striped">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Title category</th>
+				<th class="right">Gross salary</th>
+				<th class="right">Year</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for directoryrecord in object.directoryrecord_set.all %}
+			{% with directoryrecord.person as person %}
+			<tr>
+				<td><a href="{% url 'person_detail' person.slug %}">{{ person.last|title }}, {{ person.first|title }}</a></td>
+				<td>{{ person.latest_record.title_category|title }}</td>
+				<td class="right">${{ person.latest_record.gross|intcomma }}</td>
+				<td class="right small">{{ person.latest_record.year }}</td>
+			</tr>
+			{% endwith %}
+			{% endfor %}
+			</tbody>
+			</table>
+		</section>
+
+		<br> 
+	</div>
+	</div>
+{% endblock %}
+
+{% block extra-js %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#person-list').DataTable( {
+    	scrollY: 400,
+    	scroller: true,
+    	info: false,
+    	dom: "<'row'<'col-sm-6'f>>" +
+		"<'row'<'col-sm-12'tr>>" +
+		"<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    });
+} );
+</script>
+{% endblock %}
