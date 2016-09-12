@@ -5,6 +5,7 @@
 <head>
     <title>{% block title %}Faculty Pay | The Daily Californian{% endblock %}</title>
     {% block meta %}
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
         <meta charset="utf-8" />
         <meta name="description" content="{% block description %}{% endblock %}" />
         <meta name="keywords" content="{% block keywords %}dailycal, Daily Californian, Daily Cal{% endblock %}" />
@@ -17,116 +18,8 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/1.4.2/css/scroller.bootstrap.min.css"/>
-
-    <style type"text/css">
-    html {
-        position: relative;
-        min-height: 100%;
-    }
-    body {
-      /* Margin bottom by footer height */
-      margin-bottom: 100px;
-    }
-
-    h2 {
-        font-weight: 300;
-        font-size: 26px;
-    }
-
-    .table>tbody>tr>td {
-        border-top: none;
-    }
-
-    p {
-        font-weight: 300;
-        font-size: 16px;
-    }
-    .center {
-        text-align: center !important;
-    }
-
-    p.byline {
-        font-size: 14px;
-    }
-
-    section {
-        margin: 20px auto;
-    }
-
-    #story p {
-        font-weight: 400;
-    }
-
-    .text,
-    .text p.byline {
-        text-align: center;
-    }
-
-    .text p {
-        text-align: left;
-    }
-
-    .navbar-dc {
-        background-color: #393966;
-    }
-    .navbar-dc .navbar-brand {
-        font-family: Georgia;
-        font-variant: small-caps;
-        color: #fff;
-    }
-    .navbar-dc .navbar-nav li a {
-        color: #fff;
-        text-transform: uppercase;
-        font-weight: 300;
-    }
-    .navbar-dc .navbar-nav li a:hover,
-    .navbar-dc .navbar-nav li a:focus {
-        color: #fff;
-        text-decoration: underline;
-        background-color: #393966;
-    }
-
-    .footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      /* Set the fixed height of the footer here */
-      height: 100px;
-      background-color: #393966;
-      margin-top: 20px;
-    }
-
-    .footer p {
-        margin: 20px auto;
-        color: #fff;
-        font-weight: 200;
-        font-size: 14px;
-    }
-
-    .footer a {
-        color: #fff;
-        font-weight: 600;
-    }
-
-    .right {
-        text-align: right;
-    }
-
-    .small {
-        font-size: 12px;
-        color: grey;
-    }
-
-    div.dataTables_wrapper div.dataTables_filter input {
-        width: 300px;
-    }
-
-    div.dataTables_wrapper div.dataTables_filter {
-        text-align: left;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'browser/css/style.css' %}"/>
     {% endblock %}
-
     {% block js %}
     <script src="{% static 'browser/js/jquery.min.js' %}"></script>
     <script src="{% static 'browser/js/bootstrap.min.js' %}"></script>
@@ -145,22 +38,21 @@
         </div>
     </nav>
     {% endblock %}
-
+    {% block top %}{% endblock %}
     {% block container %}
     <div class="container">
         {% block breadcrumbs-container %}
         <div class="row">
         <div class="col-md-8 col-md-offset-2">
-                <ol class="breadcrumb">
-                    {% block breadcrumbs %}{% endblock %}
-                </ol>
+            <ol class="breadcrumb">
+                {% block breadcrumbs %}{% endblock %}
+            </ol>
         </div>
         </div>
         {% endblock %}
         {% block content %}{% endblock %}
     </div>
     {% endblock %}
-
     <footer class="footer">
       <div class="container">
         <p>Questions, comments or corrections? Email <a href="mailto:projects@dailycal.org">projects@dailycal.org</a>. Data and code is open-source on <a href="https://github.com/dailycal-projects">GitHub</a>. <br>
@@ -168,13 +60,6 @@
         Copyright © 2016 The Daily Californian, The Independent Berkeley Student Publishing Co., Inc.</p>
       </div>
     </footer>
-
     {% block extra-js %}{% endblock %}
 </body>
-
-<!-- Are you a UC Berkeley student who wants to use your
-coding skills to build projects, design websites and build
-apps with immediate impact on the Berkeley community? We'd
-love to hear from you. Email schinoy *at* dailycal *dot* org. -->
-
 </html>

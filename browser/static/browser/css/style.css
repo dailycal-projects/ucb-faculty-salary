@@ -1,0 +1,120 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 100px;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 26px;
+}
+h3 {
+    font-weight: 400;
+    font-size: 20px;
+    text-align: left;
+
+}
+
+.table>tbody>tr>td {
+    border-top: none;
+}
+
+.top {
+    background: #2d2d51;
+    color: #fff;
+}
+.top a {
+    color: #fff;
+    font-weight: 600;
+}
+
+p {
+    font-weight: 300;
+    font-size: 16px;
+}
+.center {
+    text-align: center !important;
+}
+
+p.byline {
+    font-size: 14px;
+}
+
+section {
+    margin: 20px auto;
+}
+.text,
+.text p.byline {
+    text-align: center;
+}
+
+.text p {
+    text-align: left;
+}
+
+.navbar-dc {
+    background-color: #393966;
+    margin-bottom: 0;
+}
+.navbar-dc .navbar-brand {
+    font-family: Georgia;
+    font-variant: small-caps;
+    color: #fff;
+}
+.navbar-dc .navbar-nav li a {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+.navbar-dc .navbar-nav li a:hover,
+.navbar-dc .navbar-nav li a:focus {
+    color: #fff;
+    text-decoration: underline;
+    background-color: #393966;
+}
+
+.breadcrumb {
+    margin-top: 20px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  background-color: #393966;
+  margin-top: 20px;
+}
+
+.footer p {
+    margin: 20px auto;
+    color: #fff;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+.footer a {
+    color: #fff;
+    font-weight: 600;
+}
+
+.right {
+    text-align: right;
+}
+
+.small {
+    font-size: 12px;
+    color: grey;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    width: 300px;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    text-align: left;
+}

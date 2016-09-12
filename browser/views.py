@@ -11,7 +11,7 @@ class SalaryRecordListView(BuildableListView):
     The landing page, with a full list of people.
     """
     model = SalaryRecord
-    template_name = "browser/salaryrecord_list.html"
+    template_name = "browser/home.html"
     build_path = 'index.html'
 
     def get_queryset(self):

@@ -45,18 +45,18 @@
 				<th>Name</th>
 				<th>Title category</th>
 				<th class="right">Gross salary</th>
-				<th class="right">Year</th>
 			</tr>
 			</thead>
 			<tbody>
 			{% for directoryrecord in object.directoryrecord_set.all %}
 			{% with directoryrecord.person as person %}
+			{% if person.latest_record.year == '2015' %}
 			<tr>
 				<td><a href="{% url 'person_detail' person.slug %}">{{ person.last|title }}, {{ person.first|title }}</a></td>
 				<td>{{ person.latest_record.title_category|title }}</td>
 				<td class="right">${{ person.latest_record.gross|intcomma }}</td>
-				<td class="right small">{{ person.latest_record.year }}</td>
 			</tr>
+			{% endif %}
 			{% endwith %}
 			{% endfor %}
 			</tbody>

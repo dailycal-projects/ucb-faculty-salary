@@ -1,7 +1,7 @@
 {% extends 'browser/base.html' %}
 {% load humanize %}
 
-{% block title %} Departments - {{ block.super }}{% endblock %}
+{% block title %} Departments | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
 <li><a href="{% url 'home' %}#database">Database</a></li>
@@ -10,10 +10,19 @@
 
 {% block content %}
 	<div class="row">
-	<div class="col-md-12">
+	<div class="col-md-8">
 		<section>
 		<h2>Average salary by department, 2015</h2>
-		<br>
+		<p>Faculty members are compensated according to, among other factors, the length of their tenure at the university. Because departments are composed of faculty members with varying levels of experience, salary differences between departments — even within a particular title category — are not due exclusively to the academic discipline itself.</p>
+
+		<p>These averages reflect only the faculty members we've chosen to analyze. That list is not exhaustive. <a href="{% url 'home' %}#caveats">Read more about our analysis.</a></p>
+		</section>
+	</div>
+	</div>
+
+	<div class="row">
+	<div class="col-md-12">
+		<section>
 		<table id="department-list" class="table table-striped">
 		<thead>
 		<tr>

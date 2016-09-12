@@ -1,8 +1,6 @@
 from django.db import models
-from django.db.models import Avg
 from django.utils.text import slugify
 from django.contrib.postgres.fields import ArrayField
-
 
 class SalaryRecord(models.Model):
     """
@@ -74,12 +72,12 @@ class Department(models.Model):
     def avg_salary_2015(self):
         return SalaryRecord.objects.filter(
                     person__directory_record__department_obj=self
-                ).filter(year='2015').aggregate(Avg('gross'))['gross__avg']
+                ).filter(year='2015').aggregate(models.Avg('gross'))['gross__avg']
 
     def avg_salary_by_category(self, category):
         return SalaryRecord.objects.filter(
                     person__directory_record__department_obj=self
-                ).filter(title_category=category).filter(year='2015').aggregate(Avg('gross'))['gross__avg']
+                ).filter(title_category=category).filter(year='2015').aggregate(models.Avg('gross'))['gross__avg']
 
     @property
     def avg_salary_professor(self):
