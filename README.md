@@ -21,12 +21,17 @@ Create a new virtualenv and clone the repository.
 virtualenv ucb-faculty-salary
 git clone https://github.com/dailycal-projects/ucb-faculty-salary.git
 ```
+Install the requirements.
+```
+pip install -r requirements.txt
+```
 Create a Postgres database. For example, if you wanted to call it `salary`:
 ```
 createdb salary
 ```
 Set the following environment variables using `EXPORT VARIABLE = 'VALUE'`:
-  * `DJANGO_SECRET_KEY`: a secret key (usually a randomly generated string)
+  * `DB_NAME`: name of the Postgres database
+  * `DB_HOST`: name of the database host
   
 Migrate the database.
 ```

@@ -21,9 +21,9 @@
 
 {% block content %}
 	<section id="database" class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-1">
 			<div style="text-align: center">
-				<h2>Look up a professor</h2>
+				<h2>Search the database</h2>
 				<p>Or, <a href="{% url 'department_list' %}">compare departments</a>.<br>Don't see a professor or lecturer? <a href="#caveats">This might be why</a>.</p>
 			</div>
 			<br>
@@ -35,7 +35,7 @@
 				<thead>
 				<tr>
 					<th>Name</th>
-					<th>Title</th>
+					<th>Rank</th>
 					<th>Department</th>
 					<th class="right">Salary</th>
 				</tr>
@@ -70,7 +70,7 @@
 
 			<h3 id="caveats">Caveats</h3>
 			<p>We're only analyzing professors, assistant professors, associate professors and lecturers. We've dropped information about administrators, deans, adjunct professors, lecturers for the summer session and more. Also, we couldn't associate all faculty members with a department, and we've chosen to exclude those people from this website (they're still available in our <a href="https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data">processed data</a>).</p>
-			<p>Moreover, a professor's salary can vary year-to-year based on the portion of time they spend on campus; some salaries are based on the academic year, and some on the fiscal year. Making departmental comparisons is especially difficult because some departments may have more experienced professors who would consequently be paid more.</p>
+			<p>Also, a professor's salary can vary year-to-year based on the portion of time they spend on campus; some salaries are based on the academic year, and some on the fiscal year. Making departmental comparisons is especially difficult because some departments may have more experienced professors who would consequently be paid more.</p>
 			<p>Another technical note: in all cases, we're examining the faculty member's gross salary, the total amount they were paid by the university. Their base salary might be less.</p>
 
 			<h3 id="download">Download and contribute</h3>
