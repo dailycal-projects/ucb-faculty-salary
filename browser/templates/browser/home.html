@@ -8,11 +8,11 @@
 	<div class="container">
 	<section class="row">
 		<div class="col-md-8 col-md-offset-2 text">
-			<h1>Professor Pay Database</h1>
+			<h1>Sift through professor salaries</h1>
 			<p class="byline">By <a href="http://www.dailycal.org/author/schinoy/">SAHIL CHINOY</a> &middot; {% now "N d, Y" %}</p>
 			<br>
-			<p class="lead center">The Daily Californian processed the last decade of payroll information for UC Berkeley faculty, creating the most complete database of professor and lecturer salaries by campus department.</p>
-			<p class="center"><a href="#database">Look up a professor</a>, <a href="#story">read background information</a> or <a href="#about">find out more about this project</a>.</p>
+			<p class="lead center">The Daily Californian processed the last decade of payroll information for UC Berkeley faculty, creating the most complete database of professor and lecturer pay by campus department.</p>
+			<p class="center"><a href="#database">Browse the database</a>, <a href="#story">read background information</a> or <a href="#about">find out more about this project</a>.</p>
 		</div>
 	</section>
 	</div>
@@ -23,8 +23,9 @@
 	<section id="database" class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div style="text-align: center">
-				<h2>Search the database</h2>
-				<p>Or, <a href="{% url 'department_list' %}">compare departments</a>.<br>Don't see a professor or lecturer? <a href="#caveats">This might be why</a>.</p>
+				<h2>Browse the database</h2>
+				<p>Or, <a href="{% url 'department_list' %}">compare departments</a>.
+				<br>Don't see a professor or lecturer? <a href="#caveats">This might be why</a>.</p>
 			</div>
 			<br>
 			<div id="loading-text" style="text-align: center;"">
@@ -35,13 +36,13 @@
 				<thead>
 				<tr>
 					<th>Name</th>
-					<th>Rank</th>
+					<th>Rank <a href="#about-data"><i class="fa fa-question-circle" aria-hidden="true"></i></a></th>
 					<th>Department</th>
 					<th class="right">Salary</th>
 				</tr>
 				</thead>
 				<tbody>
-				{% for record in object_list %}
+				{% for record in object_list|slice:":100" %}
 				<tr>
 					<td><a href="{% url 'person_detail' record.person.slug %}">{{ record.person.last|title }}, {{ record.person.first|title }}</a></td>
 					<td>{{ record.person.latest_record.title_category|title }}</td>
@@ -62,20 +63,7 @@
 	<hr>
 	<section id="about" class="row">
 		<div class="col-md-8 col-md-offset-2 text">
-			<h2>About this project</h2>
-
-			<h3>The data</h3>
-			<p>The university publishes employee pay data on <a href="https://ucannualwage.ucop.edu/wage/">its website</a> annually. But it doesn't have information on professors' and lecturers' departmental affiliations, and it's not easy to trace a person's salary over multiple years.</p>
-			<p>We merged data from 2010 to 2015 from the university with 2005 to 2009 pay data from the UC Berkeley library. Then, we added information about departmental affiliations, where available. The result is the most complete public, downloadable database of pay information for UC Berkeley faculty.</p>
-
-			<h3 id="caveats">Caveats</h3>
-			<p>We're only analyzing professors, assistant professors, associate professors and lecturers. We've dropped information about administrators, deans, adjunct professors, lecturers for the summer session and more. Also, we couldn't associate all faculty members with a department, and we've chosen to exclude those people from this website (they're still available in our <a href="https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data">processed data</a>).</p>
-			<p>Also, a professor's salary can vary year-to-year based on the portion of time they spend on campus; some salaries are based on the academic year, and some on the fiscal year. Making departmental comparisons is especially difficult because some departments may have more experienced professors who would consequently be paid more.</p>
-			<p>Another technical note: in all cases, we're examining the faculty member's gross salary, the total amount they were paid by the university. Their base salary might be less.</p>
-
-			<h3 id="download">Download and contribute</h3>
-			<p>We're publishing the raw data and code used to create this database for journalists and researchers. Our pipeline can be used to analyze data from other campuses or for other positions within the university — for example, administrators or athletic personnel.</p>
-			<p>You can read more details and contribute to the project <a href="https://github.com/dailycal-projects/ucb-faculty-salary">on GitHub.</a></p>
+			{% include 'browser/about.html' %}
 		</div>
 	</section>
 {% endblock %}
@@ -84,9 +72,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#person-list').DataTable( {
-    	scroller: true,
     	scrollY: 400,
-    	dom: "<'row'<'col-sm-8 col-sm-offset-4'f>>" +
+    	scroller: true,
+    	dom: "<'row'<'col-sm-12'f>>" +
 		"<'row'<'col-sm-12'tr>>" +
 		"<'row'<'col-sm-5'i><'col-sm-7'p>>",
     	initComplete: function(settings, json) {

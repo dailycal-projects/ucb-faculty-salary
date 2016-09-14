@@ -32,15 +32,18 @@
     {% block navbar %}
     <nav class="navbar navbar-dc navbar-static-top">
         <div class="container">
-            <div class="navbar-header"> <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a href="http://www.dailycal.org/" class="navbar-brand">the Daily Californian</a> </div>
+            <div class="navbar-header">
+                <a href="{% url 'home' %}" class="navbar-brand">the Daily Californian</a>
+            </div>
             <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'home' %}">Faculty pay</a></li>
+                <li class="active"><a href="{% url 'home' %}">Faculty pay</a></li>
             </ul>
-
-            <ul class="nav navbar-nav pull-right">
-              <li class="nav-link"><a href="https://www.facebook.com/sharer/sharer.php?u=projects.dailycal.org/professor-pay/"><i class="fa fa-lg fa-facebook"></i></a></li>
-              <li class="nav-link"><a href=""><i class="fa fa-lg fa-twitter"></i></a></li>
-            </ul>
+            <div class="hidden-xs">
+                <ul class="nav navbar-nav pull-right">
+                  <li class="nav-link"><a href="https://www.facebook.com/sharer/sharer.php?u=projects.dailycal.org/professor-pay/"><i class="fa fa-lg fa-facebook"></i></a></li>
+                  <li class="nav-link"><a href=""><i class="fa fa-lg fa-twitter"></i></a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     {% endblock %}

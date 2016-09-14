@@ -45,6 +45,6 @@ The data is processed with a series of Django management commands, which you can
 * `collapsepeople`: Looks for common names in the ten years of data and creates `Person` objects for each unique faculty member.
 * `importdirectoryrecords`: Imports information from the UC Berkeley directory that associates people with department codes, and associates `People` with `DirectoryRecord` objects.
 * `processdepartments`: Imports information associating department codes to canonical departments, and creates `Department` objects for `DirectoryRecord` objects, where applicable.
-* `overrides`: Manually corrects for some errors.
+* `overrides`: Manually corrects for some errors, like professors who have left UC Berkeley or whose departments are incorrect.
 
 Alternatively, run `python manage.py initialize` to bootstrap the project, which will call the above commands in succession.

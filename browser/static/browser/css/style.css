@@ -3,10 +3,8 @@ html {
     min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 100px;
+    margin-bottom: 100px;
 }
-
 h2 {
     font-weight: 300;
     font-size: 26px;
@@ -75,17 +73,32 @@ section {
     text-decoration: underline;
     background-color: #393966;
 }
+/* Overriding mobile behavior */
+.navbar-dc .navbar-header {
+    float: left !important;
+}
+.navbar-dc .navbar-nav {
+    float: left;
+    margin: 0;
+}
+.navbar-dc .navbar-nav>li {
+    float: left;
+}
+.navbar-dc .navbar-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 
 .breadcrumb {
     margin-top: 20px;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   background-color: #393966;
   margin-top: 20px;
+  position: absolute;
+  bottom: 0;
 }
 
 .footer p {
@@ -115,4 +128,16 @@ div.dataTables_wrapper div.dataTables_filter input {
 
 div.dataTables_wrapper div.dataTables_filter {
     text-align: left;
+}
+
+@media(max-width: 768px) {
+    body {
+        margin-bottom: 120px;
+    }
+    .footer p {
+        font-size: 12px;
+    }
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 200px;
+    }
 }

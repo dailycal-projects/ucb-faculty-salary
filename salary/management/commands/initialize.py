@@ -12,6 +12,7 @@ class Command(BaseCommand):
         Person.objects.all().delete()
         Department.objects.all().delete()
 
+        call_command('cleanrawfiles')
         call_command('importsalaryrecords')
         call_command('collapsepeople')
         call_command('importdirectoryrecords')

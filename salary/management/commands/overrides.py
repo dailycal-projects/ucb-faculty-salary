@@ -32,3 +32,6 @@ class Command(BaseCommand):
         # Gibor Basri
         astronomy = Department.objects.get(canonical='Astronomy')
         DirectoryRecord.objects.filter(uid='282').update(department_obj=astronomy)
+
+        # David Tse
+        DirectoryRecord.objects.get(searched_name='DAVID TSE').delete()
