@@ -43,7 +43,7 @@
 				</tr>
 				</thead>
 				<tbody>
-				{% for record in object_list|slice:":100" %}
+				{% for record in object_list %}
 				<tr>
 					<td><a href="{% url 'person_detail' record.person.slug %}">{{ record.person.last|title }}, {{ record.person.first|title }}</a></td>
 					<td>{{ record.person.latest_record.title_category|title }}</td>
