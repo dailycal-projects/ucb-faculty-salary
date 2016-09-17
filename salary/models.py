@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.postgres.fields import ArrayField
 
+
 class SalaryRecord(models.Model):
     """
     Individual salary record for one person in one year.

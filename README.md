@@ -40,8 +40,9 @@ python manage.py migrate
 
 The data is processed with a series of Django management commands, which you can run with `python manage.py [command]`. They are, in the order they should be run:
 
-* `cleanrawfiles`: Process and join raw CSVs. This version of the script filters for UC Berkeley faculty. Here's where you could, for example, include other campuses or administrative positions.
-* `importsalaryrecords`: Uses `django-postgres-copy` to import the clean CSV into a Postgres database.
+*`mergerawfiles` Process and join the raw CSVs in `data/salary`, creating a merged, cleaned CSV at `data/merged.csv`. This file includes information for every UC campus. It's big — about 180 MB.
+* `filterberkeleyfaculty`:  Filters for UC Berkeley faculty. Here's where you could, for example, include other campuses or administrative positions. Creates `data/berkeley_faculty.csv`.
+* `importsalaryrecords`: Uses `django-postgres-copy` to import the clean Berkeley faculty CSV into a Postgres database.
 * `collapsepeople`: Looks for common names in the ten years of data and creates `Person` objects for each unique faculty member.
 * `importdirectoryrecords`: Imports information from the UC Berkeley directory that associates people with department codes, and associates `People` with `DirectoryRecord` objects.
 * `processdepartments`: Imports information associating department codes to canonical departments, and creates `Department` objects for `DirectoryRecord` objects, where applicable.

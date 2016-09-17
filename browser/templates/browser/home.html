@@ -11,8 +11,9 @@
 			<h1>Sift through professor salaries</h1>
 			<p class="byline">By <a href="http://www.dailycal.org/author/schinoy/">SAHIL CHINOY</a> &middot; {% now "N d, Y" %}</p>
 			<br>
-			<p class="lead center">The Daily Californian processed the last decade of payroll information for UC Berkeley faculty, creating the most complete database of professor and lecturer pay by campus department.</p>
-			<p class="center"><a href="#database">Browse the database</a>, <a href="#story">read background information</a> or <a href="#about">find out more about this project</a>.</p>
+			<p class="lead center">The Daily Californian processed the last decade of payroll information for UC Berkeley faculty, creating the most complete, searchable database of professor and lecturer pay by campus department.</p>
+			<p class="center">We're also releasing the data as part of an <a href="#about-project">open-source effort</a> to make faculty compensation information accessible to journalists and researchers.</p>
+			<p class="center"><a href="#database">Browse the database</a>, <a href="#story">read background information</a> or <a href="#about">find out more about the data</a>.</p>
 		</div>
 	</section>
 	</div>
@@ -24,7 +25,7 @@
 		<div class="col-md-10 col-md-offset-1">
 			<div style="text-align: center">
 				<h2>Browse the database</h2>
-				<p>Or, <a href="{% url 'department_list' %}">compare departments</a>.
+				<p><a href="{% url 'department_list' %}">Compare departments</a> or <a href="#about-data">read more about the data</a>.
 				<br>Don't see a professor or lecturer? <a href="#caveats">This might be why</a>.</p>
 			</div>
 			<br>
@@ -38,7 +39,7 @@
 					<th>Name</th>
 					<th>Rank <a href="#about-data"><i class="fa fa-question-circle" aria-hidden="true"></i></a></th>
 					<th>Department</th>
-					<th class="right">Salary</th>
+					<th class="right">Salary (2015)</th>
 				</tr>
 				</thead>
 				<tbody>

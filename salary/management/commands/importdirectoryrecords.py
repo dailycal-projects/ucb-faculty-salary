@@ -13,7 +13,8 @@ class Command(BaseCommand):
         Returns dict with {searched_name: row}
         """
         cache = {}
-        cache_path = os.path.join(settings.DATA_DIR, 'directory.csv')
+        cache_path = os.path.join(
+            settings.DATA_DIR, 'directory', 'directory.csv')
         with open(cache_path, 'r') as cache_file:
             reader = csv.DictReader(cache_file)
             for row in reader:
@@ -24,7 +25,8 @@ class Command(BaseCommand):
         cache = self.build_cache()
         for person in Person.objects.filter(directory_record=None):
             print(person)
-            results = cache.get('{} {}'.format(person.first, person.last), None)
+            results = cache.get('{} {}'.format(
+                person.first, person.last), None)
             if results:
                 record = DirectoryRecord(**results)
                 record.save()

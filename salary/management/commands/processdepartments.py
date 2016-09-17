@@ -8,7 +8,7 @@ from salary.models import DirectoryRecord, Department
 
 
 class Command(BaseCommand):
-    help = ""
+    help = "Add departmental information and create Department objects"
 
     def handle(self, *args, **options):
         Department.objects.all().delete()

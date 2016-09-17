@@ -61,6 +61,6 @@ class DepartmentDetailView(BuildableDetailView):
                 'year': year,
                 'avg': avg,
                 'berkeley_avg': berkeley_avg
-            }) 
+            })
 
         return context
