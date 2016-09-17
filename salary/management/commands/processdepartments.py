@@ -2,7 +2,6 @@ import os
 import csv
 from django.utils.text import slugify
 from django.conf import settings
-from postgres_copy import CopyMapping
 from django.core.management.base import BaseCommand
 from salary.models import DirectoryRecord, Department
 
@@ -19,7 +18,8 @@ class Command(BaseCommand):
                 if row['keep'] == '0':
                     continue
                 slug = slugify(row['canonical'])
-                department, created = Department.objects.get_or_create(slug=slug)
+                department, created = Department.objects.get_or_create(
+                    slug=slug)
                 department.canonical = row['canonical']
                 department.discipline = row['discipline']
                 code = row['code']
@@ -28,11 +28,12 @@ class Command(BaseCommand):
                 else:
                     department.codes += [code]
                 department.save()
-        
+
         for record in DirectoryRecord.objects.all():
             try:
                 code, desc = record.home_department.split('-')
-                department = Department.objects.get(codes__contains=[code.strip()])
+                department = Department.objects.get(
+                    codes__contains=[code.strip()])
                 record.department_obj = department
                 record.save()
             except:
