@@ -79,19 +79,19 @@ class Department(models.Model):
 
     @property
     def avg_salary_professor(self):
-        return self.avg_salary_by_category('PROFESSOR')
+        return self.avg_salary_by_category('professor')
 
     @property
     def avg_salary_associate_professor(self):
-        return self.avg_salary_by_category('ASSOCIATE PROFESSOR')
+        return self.avg_salary_by_category('associate professor')
 
     @property
     def avg_salary_assistant_professor(self):
-        return self.avg_salary_by_category('ASSISTANT PROFESSOR')
+        return self.avg_salary_by_category('assistant professor')
 
     @property
     def avg_salary_lecturer(self):
-        return self.avg_salary_by_category('LECTURER')
+        return self.avg_salary_by_category('lecturer')
 
     def __str__(self):
         return self.canonical

@@ -118,6 +118,8 @@ STATIC_URL = '/static/'
 BUILD_DIR = os.path.join(BASE_DIR,'build')
 BAKERY_VIEWS = (
     'browser.views.SalaryRecordListView',
+    'browser.views.ContextView',
+    'browser.views.AboutView',
     'browser.views.PersonDetailView',
     'browser.views.DepartmentListView',
     'browser.views.DepartmentDetailView',

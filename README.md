@@ -10,7 +10,7 @@ The most complete, open-source database of UC Berkeley faculty salary data.
 
 *Are you a journalist or a researcher who wants to use this data?*
 
-Head to the [/data/](https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data) directory. You can find the processed file of Berkeley professors associated with departments at `processed_berkeley_professors.csv`. The merged file of every UC employee (excluding those whose names were redacted) for the 2006 to 2015 data is available at `merged.csv` (this is a big file). The raw, unstandardized CSVs are in the /salary/ directory. If you have any questions, contact us at projects@dailycal.org. If you end up using the data, we'd love if you dropped us a line!
+Head to the [/data](https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data) directory. You can find the processed file of Berkeley professors associated with departments at `processed_berkeley_professors.csv`. The merged file of every UC employee (excluding those whose names were redacted) for the 2006 to 2015 data is available at `merged.csv` (this is a big file). The raw, unstandardized CSVs are in the [/data/salary](https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data/salary) directory. If you have any questions, contact us at projects@dailycal.org. If you end up using the data, we'd love if you dropped us a line!
 
 *Are you a programmer who wants to adapt our database to fit your own needs?*
 
