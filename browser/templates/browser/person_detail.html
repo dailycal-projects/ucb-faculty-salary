@@ -23,7 +23,6 @@
 			<tr>
 				<th>Year</th>
 				<th>Rank</th>
-				<th>Title code</th>
 				<th class="right">Salary</th>
 			</tr>
 			</thead>
@@ -31,8 +30,7 @@
 			{% for record in object.salaryrecord_set.all %}
 			<tr>
 				<td>{{ record.year }}</td>
-				<td>{{ record.title_category|title }}</td>
-				<td><span class="small">{{ record.title }}</span></td>
+				<td>{{ record.title_category|title }} <i data-toggle="tooltip" data-placement="right" title="{{ record.title }}" class="fa fa-info-circle" aria-hidden="true"></i></td>
 				<td class="right">${{ record.gross|intcomma }}</td>
 			</tr>
 			{% endfor %}
@@ -41,4 +39,12 @@
 		</section>
 	</div>
 	</div>
+{% endblock %}
+
+{% block extra-js %}
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+</script>
 {% endblock %}

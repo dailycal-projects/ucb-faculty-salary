@@ -1,7 +1,7 @@
 import os
 from django.shortcuts import render
 from django.utils.text import slugify
-from bakery.views import BuildableListView, BuildableDetailView
+from bakery.views import BuildableTemplateView, BuildableListView, BuildableDetailView
 from salary.models import Person, Department, SalaryRecord, DirectoryRecord
 from django.db.models import Avg
 
@@ -16,6 +16,16 @@ class SalaryRecordListView(BuildableListView):
 
     def get_queryset(self):
         return self.model.objects.filter(year='2015').exclude(person__directory_record__department_obj=None)
+
+
+class ContextView(BuildableTemplateView):
+    template_name = "browser/context.html"
+    build_path = 'context/index.html'
+
+
+class AboutView(BuildableTemplateView):
+    template_name = "browser/about.html"
+    build_path = 'about/index.html'
 
 
 class PersonDetailView(BuildableDetailView):
@@ -33,10 +43,6 @@ class DepartmentListView(BuildableListView):
     model = Department
     template_name = "browser/department_list.html"
     build_path = 'departments/index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(DepartmentListView, self).get_context_data(**kwargs)
-        return context
 
 
 class DepartmentDetailView(BuildableDetailView):

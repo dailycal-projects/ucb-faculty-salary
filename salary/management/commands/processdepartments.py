@@ -11,7 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         Department.objects.all().delete()
-        departments_path = os.path.join(settings.DATA_DIR, 'departments.csv')
+        departments_path = os.path.join(settings.DATA_DIR, 'directory', 'departments.csv')
         with open(departments_path, 'r') as departments_file:
             reader = csv.DictReader(departments_file)
             for row in reader:

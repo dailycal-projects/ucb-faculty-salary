@@ -29,24 +29,7 @@
     {% endblock %}
 </head>
 <body>
-    {% block navbar %}
-    <nav class="navbar navbar-dc navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="{% url 'home' %}" class="navbar-brand">the Daily Californian</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'home' %}">Faculty pay</a></li>
-            </ul>
-            <div class="hidden-xs">
-                <ul class="nav navbar-nav pull-right">
-                  <li class="nav-link"><a href="https://www.facebook.com/sharer/sharer.php?u=projects.dailycal.org/faculty-pay/"><i class="fa fa-lg fa-facebook"></i></a></li>
-                  <li class="nav-link"><a href="https://twitter.com/intent/tweet?url=projects.dailycal.org%2Ffaculty-pay&via=dailycal&text=Faculty%20Pay%20Database&"><i class="fa fa-lg fa-twitter"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    {% endblock %}
+    {% include 'browser/navbar.html' %}
     {% block top %}{% endblock %}
     {% block container %}
     <div class="container">

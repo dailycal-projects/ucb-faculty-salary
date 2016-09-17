@@ -3,7 +3,7 @@ html {
     min-height: 100%;
 }
 body {
-    margin-bottom: 100px;
+    margin-bottom: 120px;
 }
 h2 {
     font-weight: 300;
@@ -13,7 +13,6 @@ h3 {
     font-weight: 400;
     font-size: 20px;
     text-align: left;
-
 }
 
 .table>tbody>tr>td {
@@ -132,12 +131,17 @@ div.dataTables_wrapper div.dataTables_filter {
 
 @media(max-width: 768px) {
     body {
-        margin-bottom: 120px;
-    }
-    .footer p {
-        font-size: 12px;
+        margin-bottom: 150px;
     }
     div.dataTables_wrapper div.dataTables_filter input {
         width: 200px;
+    }
+}
+@media(max-width: 480px) {
+    body {
+        margin-bottom: 180px;
+    }
+    .footer p {
+        font-size: 12px;
     }
 }

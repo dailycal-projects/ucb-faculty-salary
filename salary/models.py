@@ -72,13 +72,10 @@ class Department(models.Model):
     @property
     def avg_salary_2015(self):
         return SalaryRecord.objects.filter(
-                    person__directory_record__department_obj=self
-                ).filter(year='2015').aggregate(models.Avg('gross'))['gross__avg']
+            person__directory_record__department_obj=self).filter(year='2015').aggregate(models.Avg('gross'))['gross__avg']
 
     def avg_salary_by_category(self, category):
-        return SalaryRecord.objects.filter(
-                    person__directory_record__department_obj=self
-                ).filter(title_category=category).filter(year='2015').aggregate(models.Avg('gross'))['gross__avg']
+        return SalaryRecord.objects.filter(person__directory_record__department_obj=self).filter(title_category=category).filter(year='2015').aggregate(models.Avg('gross'))['gross__avg']
 
     @property
     def avg_salary_professor(self):
@@ -120,7 +117,7 @@ class Person(models.Model):
         return '/person/{}/'.format(self.slug)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify('{} {}'.format(self.first,self.last))
+        self.slug = slugify('{} {}'.format(self.first, self.last))
         super(Person, self).save(*args, **kwargs)
 
     def __str__(self):

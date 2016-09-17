@@ -4,7 +4,8 @@ from salary.models import Person, DirectoryRecord, SalaryRecord, Department
 
 
 class Command(BaseCommand):
-    help = "Populate the database with salary, directory, and department information"
+    help = "Populate the database with salary, directory, \
+    and department information"
 
     def handle(self, *args, **options):
         SalaryRecord.objects.all().delete()
@@ -12,7 +13,8 @@ class Command(BaseCommand):
         Person.objects.all().delete()
         Department.objects.all().delete()
 
-        call_command('cleanrawfiles')
+        call_command('mergerawfiles')
+        call_command('filterberkeleyfaculty')
         call_command('importsalaryrecords')
         call_command('collapsepeople')
         call_command('importdirectoryrecords')
