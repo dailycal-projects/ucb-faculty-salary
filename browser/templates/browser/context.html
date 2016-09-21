@@ -2,7 +2,10 @@
 
 {% block title %} Context | {{ block.super }} {% endblock %}
 
-{% block breadcrumbs-container %}{% endblock %}
+{% block breadcrumbs %}
+<li><a href="{% url 'home' %}">Home</a></li>
+<li class="active">Context</li>
+{% endblock %}
 
 {% block content %}
 <div class="row">

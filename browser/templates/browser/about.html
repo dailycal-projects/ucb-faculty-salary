@@ -2,7 +2,10 @@
 
 {% block title %} About | {{ block.super }} {% endblock %}
 
-{% block breadcrumbs-container %}{% endblock %}
+{% block breadcrumbs %}
+<li><a href="{% url 'home' %}">Home</a></li>
+<li class="active">About</li>
+{% endblock %}
 
 {% block content %}
 <div class="row">

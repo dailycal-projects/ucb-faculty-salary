@@ -1,4 +1,4 @@
-The most complete, open-source database of UC Berkeley faculty salary data.
+The most complete open-source database of UC Berkeley faculty salary data.
 
 # What is this?
 
@@ -8,9 +8,9 @@ The most complete, open-source database of UC Berkeley faculty salary data.
 
 # How can I use this?
 
-*Are you a journalist or a researcher who wants to use this data?*
+*Are you a journalist or a researcher who wants to download this data?*
 
-Head to the [/data](https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data) directory. You can find the processed file of Berkeley professors associated with departments at `processed_berkeley_professors.csv`. The merged file of every UC employee (excluding those whose names were redacted) for the 2006 to 2015 data is available at `merged.csv` (this is a big file). The raw, unstandardized CSVs are in the [/data/salary](https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data/salary) directory. If you have any questions, contact us at projects@dailycal.org. If you end up using the data, we'd love if you dropped us a line!
+Head to the [/data](https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data) directory. You can find the processed file of Berkeley professors associated with departments at `processed_berkeley_professors.csv`. The merged file of every UC employee (excluding those whose names were redacted) for the 2006 to 2015 data is available at `merged.csv` (this is a big file). The raw, unstandardized CSVs are in the [/data/salary](https://github.com/dailycal-projects/ucb-faculty-salary/tree/master/data/salary) directory. If you have any questions, contact us at projects@dailycal.org, and if you end up using the data, we'd love if you dropped us a line!
 
 *Are you a programmer who wants to adapt our database to fit your own needs?*
 
@@ -44,7 +44,7 @@ The data is processed with a series of Django management commands, which you can
 * `filterberkeleyfaculty`:  Filters for UC Berkeley faculty. Here's where you could, for example, include other campuses or administrative positions. Creates `data/berkeley_faculty.csv`.
 * `importsalaryrecords`: Uses `django-postgres-copy` to import the clean Berkeley faculty CSV into a Postgres database.
 * `collapsepeople`: Looks for common names in the ten years of data and creates `Person` objects for each unique faculty member.
-* `importdirectoryrecords`: Imports information from the UC Berkeley directory that associates people with department codes, and associates `People` with `DirectoryRecord` objects.
+* `importdirectoryrecords`: Imports information from the UC Berkeley directory that associates people with department codes, and associates `Person` objects with `DirectoryRecord` objects.
 * `processdepartments`: Imports information associating department codes to canonical departments, and creates `Department` objects.
 * `overrides`: Manually corrects for some errors, like professors who have left UC Berkeley or whose departments are incorrect.
 * `exportprocesseddata`: Exports CSV of each year of salary information we have for Berkeley professors who we've associated with a department.
