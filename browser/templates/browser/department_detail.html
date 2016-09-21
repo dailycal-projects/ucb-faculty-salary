@@ -20,8 +20,7 @@
 			<thead>
 			<tr>
 				<th>Category</th>
-				<th width="40%" class="right">Avg. pay in {{ object.canonical }}</th>
-				<th width="40%" class="right">Avg. pay at UC Berkeley</th>
+				<th width="40%" class="right">Avg. salary in {{ object.canonical }}</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -29,7 +28,6 @@
 			<tr>
 				<td>{{ category.title_category|title }}</td>
 				<td class="right">${{ category.gross__avg|floatformat:"2"|intcomma }}</td>
-				<td class="right">${{ category.all__avg|floatformat:"2"|intcomma }}</td>
 			</tr>
 			{% endfor %}
 			</tbody>

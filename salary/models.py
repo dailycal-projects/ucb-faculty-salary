@@ -67,7 +67,7 @@ class Department(models.Model):
     slug = models.CharField(max_length=256, null=True)
 
     def get_absolute_url(self):
-        return '/departments/{}/'.format(self.slug)
+        return '/paychecker/departments/{}/'.format(self.slug)
 
     @property
     def avg_salary_2015(self):
@@ -114,7 +114,7 @@ class Person(models.Model):
         return self.salaryrecord_set.first()
 
     def get_absolute_url(self):
-        return '/person/{}/'.format(self.slug)
+        return '/paychecker/person/{}/'.format(self.slug)
 
     def save(self, *args, **kwargs):
         self.slug = slugify('{} {}'.format(self.first, self.last))

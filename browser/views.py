@@ -11,21 +11,21 @@ class SalaryRecordListView(BuildableListView):
     The landing page, with a full list of people.
     """
     model = SalaryRecord
-    template_name = "browser/home.html"
-    build_path = 'index.html'
+    template_name = 'browser/home.html'
+    build_path = 'paychecker/index.html'
 
     def get_queryset(self):
         return self.model.objects.filter(year='2015').exclude(person__directory_record__department_obj=None)
 
 
 class ContextView(BuildableTemplateView):
-    template_name = "browser/context.html"
-    build_path = 'context/index.html'
+    template_name = 'browser/context.html'
+    build_path = 'paychecker/context/index.html'
 
 
 class AboutView(BuildableTemplateView):
-    template_name = "browser/about.html"
-    build_path = 'about/index.html'
+    template_name = 'browser/about.html'
+    build_path = 'paychecker/about/index.html'
 
 
 class PersonDetailView(BuildableDetailView):
@@ -33,7 +33,7 @@ class PersonDetailView(BuildableDetailView):
     All salary and department information for an individual person.
     """
     model = Person
-    template_name = "browser/person_detail.html"
+    template_name = 'browser/person_detail.html'
 
 
 class DepartmentListView(BuildableListView):
@@ -41,8 +41,8 @@ class DepartmentListView(BuildableListView):
     List of departments with salary by position.
     """
     model = Department
-    template_name = "browser/department_list.html"
-    build_path = 'departments/index.html'
+    template_name = 'browser/department_list.html'
+    build_path = 'paychecker/departments/index.html'
 
 
 class DepartmentDetailView(BuildableDetailView):
@@ -50,7 +50,7 @@ class DepartmentDetailView(BuildableDetailView):
     Average salary by position, and a full list of people for a department.
     """
     model = Department
-    template_name = "browser/department_detail.html"
+    template_name = 'browser/department_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(DepartmentDetailView, self).get_context_data(**kwargs)
